@@ -1,0 +1,57 @@
+# Lệnh phân quyền trong luinx
+1.**chomd**  : thay đổi quyền thực thi,đọc,viết của file và thứ mục 
+2.**chown**  : thay đổi user và group 
+3.**sudo**   : lệnh có quyền yêu cầu quản trị hoặc root,những quyền nào khoong thưc hiện đưuọc thì ta thểm sudo vào đầu
+4.GROUP      : là tên định danh cho một nhóm người dùng có cùng một đặc điểm nào đó. Một group có thể có nhiều user và một user có thể là 
+               thành viên trong nhiều group.
+# Cách phân quyền và add tạp thêm group,user
+1.Bảng phân quyền  
+  Số       Loại Quyền         
+   0     không cho phép       ___
+   1     thực thi             __x
+   2     viết                 _w_    
+   3     Thực thi+viết        _wx
+   4     đọc                  r__
+   5     đọc+thực thi         r_x
+   6     đoc+viết             rw_
+   7     đọc+viết+thực thi    rwx
+--r (read) – quyền đọc file/folder.
+--w (write) – quyền ghi/sửa nội dung file/folder.
+--x (execute) – quyền thực thi (truy cập) thư mục. Đối với thư mục thì bạn cần phải có quyền execute thì mới dùng lệnh cd để truy cập vào được.
+2.Cach sử dụng :
+## phân quyền :
+"chomd [quyền quy đổi ra số ] <tên file thư mục> "
+ vd chomd 723 linh.sh 
+    user : ứng với số 7- đọc+viet+thục thi
+    group: ứng với số 2- viêt
+    other : ứng với số 3-thuc thi+viet
+## thay dổi user và group 
+"chown [OPTIONS] [USER] [:GROUP] <tên file>"
+ vd  - chown linh:long linh.sh #thay đổi cả user và group
+           user: thay bằng linh
+           group: thay bằng long 
+     -chown linh linh.sh #thay đổi user
+     -chown :long linh.sh #thay đổi gruop
+4.Cách thêm một user và group
+ # "useradd" thêm một user
+ vd useradd linh 
+ # "userdel" xóa một user 
+ # "groupadd" : thêm một gruop
+ # "groupdel" xóa một gruop 
+ # khi bạn muốn truy cập vào quyền root thì gõ "sudo su "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
