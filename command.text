@@ -1,0 +1,19 @@
+
+# Các lệnh cơ bản 
+1.**cd**    : vào thư mục mình cần 
+2.**cd ../**:chuyển tới thư mục ở trước thu mục đó
+3.**ls**    :xem thư mục hiện tại của bạn của những file nào 
+4.**ls -a** :liệt kê các file ẩn
+5.**ll**    :liệt kê các file thư mục với thông tin chi tiết như phân quyền tên group user...
+6.**cat**   :xem nọi dung file 
+7.**cp**    : copy file thu mục 
+8.**mv**    : di chuyển file hoặc đổi tên file 
+9.**mkdir** : tạo một thư mục mới
+10.**tuoch** :tạo một file mới
+11.**vi-vim**:sửa nội dung trong file
+12.**rm -rf**:xóa không cần hỏi thư mục hoặc file
+13.**pwd**   :hiển thị đường dẫn đến thư mục hiện tại
+14.**free**  :hiển thị ram 
+15.**grep**  :tìm kiếm tất cả các file .text
+16.**locate**:định vị file bạn cần tìm
+
