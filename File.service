@@ -1,0 +1,43 @@
+Vị trí:
+etc/systemd/system/foo-daemon.service
+-Để nạp lại khi file service thay đổi 
+ $ sudo systemctl daemon-reload
+- Dùng các lệnh start, stop, restart và status
+$ sudo systemctl start foo-daemon
+$ sudo systemctl stop foo-daemon
+$ sudo systemctl restart foo-daemon
+$ systemctl status foo-daemon
+ -Cấu hình một dịch vụ khởi động cùng với hệ thống, bạn cần phải kích hoạt 
+$ sudo systemctl enable foo-daemon
+-Tắt khởi động hệ thống
+systemctl disable foo-daemon
+-Khiểm tra dịch vụ :
+$ journalctl -u foo-daemon
+
+Thành phần  :
+-File service gồm 3 mục chính là [Unit] [Service] [Install]
+ví dụ :
+[Unit]
+mô tả=Foo
+
+[Service]
+ExecStart=/usr/sbin/foo-daemon
+
+[Install]
+WantedBy=multi-user.target
+
+Phần [Unit]
+Những tùy chọn quan trọng của phần [Unit]
+-Danh sách đầy đủ của những tùy chọn phần 
+[Unit]:
+$ man systemd.unit
+
+Phần [Service]
+Những tùy chọn quan trọng của phần [Service]
+Danh sách đầy đủ của những tùy chọn phần [Service]:
+$ man systemd.service
+
+Phần [Install]
+Những tùy chọn quan trọng của phần [Install]
+Danh sách đầy đủ của những tùy chọn phần [Install]:
+$ man systemd.install
