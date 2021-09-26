@@ -1,0 +1,24 @@
+Cách cài đặt ufw :
+- sudo ufw status 
+-sudo apt install ufw 
+Thiết lập mặc định :
+-sudo ufw default deny incoming
+-sudo ufw default allow outgoing
+Định cấu hình SSH:
+- sudo ufw allow <port>
+Bật ufw:
+- sudo ufw enable
+-sudo ufw status verbose ( xem các quy luật )
+Cho phép các kết nối khác :
+-sudo ufw allow 6000:6007/tcp 
+Thêm địa chỉ truy cập :
+sudo ufw allow from <ip>
+Thêm một địa chỉ ip được phép kết nối port :
+-sudo ufw allow from <ip> to any port <port>
+Chặn kết nối :
+-sudo ufw deny from <ip>
+Xóa các cổng kết nối :
+-sudo ufw delete allow <port >
+-sudo delete sallow http
+Call từ máy nay sang máy khác 
+ -dùng lệnh ping < đị chỉ ip >
