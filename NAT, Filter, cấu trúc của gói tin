@@ -1,0 +1,36 @@
+# NAT ,Filter,gói tin 
+## NAT 
+ -NAT cho phép một hoặc nhiều địa chỉ ip nội miền chuyển sàng một hoặc nhiều địa chỉ ip ngoại miền
+ -Các loại NAT :
+     + Static NAT là kỹ thuật dùng để thay đổi, biến một IP này thành một IP khác. Bằng cách sử dụng phương pháp cố định cụ thể từ địa chỉ IP cục bộ sang Public. Toàn bộ quá trình này được thực hiện và cài đặt thủ công
+       ** cách cấu hình static NAT** : +Thiết lập mối quan hệ từ địa chỉ ip cục bộ đến bộ pucplic
+                                            Router (config) # ip nat inside source static [local ip] [global ip]
+                                       +Xác định cổng kết nối với mạng nội bộ:
+                                             Router (config-if) # ip nat inside
+                                       +Xác định cổng kết nối với mạng bên ngoài:
+                                            Router (config-if) # ip nat outside
+     + Dynamic NAT : Chuyển IP này sang một ip khác một cách hợp lệ
+       ** Cách cấu hình Dynamic NAT** :+Xác định địa chỉ IP của mạng bên ngoài:
+                                            Router (config) # ip nat pool [name start ip] [name end ip] netmask [netmask]/prefix-lenght [prefix-lenght]
+                                       +Thiết lập ACL để tạo danh sách các địa chỉ mạng cục bộ được phép chuyển đổi IP:
+                                            Router (config) # access-list [access-list-number-permit] source [source-wildcard]
+                                       +Thiết lập mối quan hệ giữa địa chỉ nguồn (được thiết lập trong ACL) và địa chỉ IP hợp lệ bên ngoài:
+                                            Router (config) # ip nat inside source list <acl-number> pool <name>
+                                       + Xác định cổng kết nối nội bộ à bên ngoài như Static Nat :
+## Cấu trúc gói tập tin 
+  - Cấu trúc phụ thuộc vào các loại gói tin và giao thức 
+  - Mô hình hay dùng là mô hình OSI : gồm 7 tầng 
+        +tâng vật lí 
+        +tâng dữ liệu 
+        +tầng mạng 
+        +tầng giao vận
+        +tầng phiên 
+        +tầng trình diễn
+        +tầng ứng dụng 
+        -> khi ta kết nối với mạng thì ta cần quan tâm đến tầng ứng dụng đó là tầng  7
+  
+  ## Content filtering 
+    Lọc nội dung, theo nghĩa chung nhất, liên quan đến việc sử dụng một chương trình để ngăn chặn truy cập đến các mục nhất định
+    trong đó có thể có hại nếu mở hoặc truy cập. Các mặt hàng phổ biến nhất để lọc là thực thi, email hoặc các trang web.
+    bộ lọc nội dung có thể được thực hiện hoặc là phần mềm hoặc thông qua một giải pháp dựa trên phần cứng
+    
