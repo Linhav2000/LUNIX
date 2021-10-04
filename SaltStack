@@ -1,0 +1,23 @@
+SaltStack 
+  1. Một số tính năng quan trọng : 
+     -Khả năng chịu lỗi 
+     -Quản lý cấu hình có thể mở rộng
+     -Mô hình thực thi song song 
+     -Dễ cài đặt và ngôn ngữ bất khả thi 
+     
+   2. Tổng Quan
+     -Salt dựa trên thư viện ZeroMQ
+     -Được chia thành nhiều phần  : 
+         + SaltMaster  : SaltMaster là daemon chính. SaltMaster được sử dụng để gửi các lệnh và cấu hình đến các Saltminions. Một bản gốc duy nhất có thể quản lý nhiều bản gốc.
+         + SaltMinions : SaltMinion là daemon nô lệ. Một minion Salt nhận các lệnh và cấu hình từ SaltMaster.
+         + Thực thi    : Các lệnh mô-đun và Adhoc được thực thi từ dòng lệnh chống lại một hoặc nhiều tay sai. Nó thực hiện Giám sát thời gian thực.
+         + Công thức : Công thức được viết sẵn Salt States. Chúng có kết thúc mở như chính Salt States và có thể được sử dụng cho các tác vụ như cài đặt gói, định cấu hình và khởi động dịch vụ, thiết lập người dùng hoặc quyền và nhiều tác vụ phổ biến khác.
+         +Grains     :Grains là một giao diện cung cấp thông tin cụ thể cho một minion
+         +Trụ cột    : Trụ cột là một giao diện tạo và lưu trữ dữ liệu có độ nhạy cao dành riêng cho một tay sai cụ thể, chẳng hạn như khóa mật mã và mật khẩu. Nó lưu trữ dữ liệu trong một cặp khóa / giá trị và dữ liệu được quản lý theo cách tương tự như Salt State Tree.
+         +Tệp đầu trang :Đối sánh các trạng thái của Salt và dữ liệu trụ cột với các tay sai của Salt.
+         +Runners   : Nó là một mô-đun nằm bên trong SaltMaster và thực hiện các tác vụ như trạng thái công việc, trạng thái kết nối, đọc dữ liệu từ các API bên ngoài, truy vấn các minion muối được kết nối và hơn thế nữa.
+         +Returners :Trả về dữ liệu từ Salt minion cho một hệ thống khác.
+         +Lò phản ứng : Nó chịu trách nhiệm kích hoạt các phản ứng khi các sự kiện xảy ra trong môi trường SaltStack của bạn.
+         +SaltCloud   : Salt Cloud cung cấp một giao diện mạnh mẽ để tương tác với các máy chủ đám mây.
+         +SaltSSH     : Chạy lệnh Salt qua SSH trên hệ thống mà không cần sử dụng Salt minion
+     3. Cài Đặt
