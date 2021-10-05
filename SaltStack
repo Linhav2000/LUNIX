@@ -20,4 +20,58 @@ SaltStack
          +Lò phản ứng : Nó chịu trách nhiệm kích hoạt các phản ứng khi các sự kiện xảy ra trong môi trường SaltStack của bạn.
          +SaltCloud   : Salt Cloud cung cấp một giao diện mạnh mẽ để tương tác với các máy chủ đám mây.
          +SaltSSH     : Chạy lệnh Salt qua SSH trên hệ thống mà không cần sử dụng Salt minion
-     3. Cài Đặt
+     3. Cài Đặt :
+         Đầu tiên bạn truy cập quyền root hoặc dùng sudo :
+           +sudo apt-get update 
+           +sudo apt-get install salt-master -> cài master  máy chính
+           +sudo apt-get install salt-minion  -> cài minion máy con
+           +cấu hình chính :
+              #interface: 0.0.0.0
+               interface: <địa chỉ ip cục bộ > -> sau khi cấu hình master xong chúng ta khởi động lại :sudo service salt-master restart
+           +Cấu hình Minion :
+           #master: salt
+           master: <địa chỉ ip cục bộ > ->sau khi cấu hình minion xong chúng ta khởi động lại :sudo service salt-minion restart
+           +Quản lí khóa :
+              Salt sử dụng Mã hóa AES :   salt-key -L
+              hiện ra kết quả : Accepted Keys:
+                                Denied Keys:
+                                Unaccepted Keys:
+                                <local system name>
+                                 Rejected Keys:  
+               --> chấp nhận tất cả các khóa : sudo salt-key -A 
+           + Liệt kê các khóa salt :
+                 salt-key -L
+                 Tạo ra kết quả :
+                 Accepted Keys:
+                 <local system name>
+                 Denied Keys:
+                 Unaccepted Keys:
+                 Rejected Keys:
+           + gửi lệnh để kiểm tra kết quả :
+              sudo salt '*' test.ping
+           Chú ý : cài trên máy chưa thành công 
+     
+     4. Tạo môi trường : 
+         +Đầu tiên bạn cài máy ảo
+         +Cài đặt Vagrant: https://www.vagrantup.com/
+              ->Chạy Vagrant :vagrant up
+              ->Dừng Vagrant :vagrant halt
+          +Tải môi trường demo :
+             cd /cd/to/path
+             git clone https://github.com/UtahDave/salt-vagrant-demo
+          +Bắt đầu môi trường :
+             cd /cd/to/path/salt-vagrant-demo
+             vagrant up
+              -> kết quả trả về :result 
+         
+              
+              
+              
+              
+              
+              
+              
+              
+              
+                  
+           
