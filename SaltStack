@@ -63,10 +63,65 @@ SaltStack
              cd /cd/to/path/salt-vagrant-demo
              vagrant up
               -> kết quả trả về :result 
-         
-              
-              
-              
+        5. Hệ thống kiểm soát truy cập saltstack
+            + Hệ thống ACL của nhà xuất bản 
+            +Hệ thống bên ngoài 
+            +Hê thống ngang hàng
+            
+          ##hống ACL :
+            Khái Niệm : cho phép truy cập vào những người dùng không phải root để thực hiện các lệnh salt trên các minion 
+            Cấu hình chính : 
+               publisher_acl :
+                  user1:
+                   - .*
+                   
+                  user2:
+                   -web*:
+                     - test.*
+                     -pkg.*
+              -> user1: được phép thực thi bất cứ điều gì 
+              -> user2: được phép sử dụng test và pkg nhưng chỉ trên web 
+            ## Hệ thống bên ngoài :
+                -Thực hiện các lệnh salt trên các minion cụ thể thông qua hệ thống ủy quyền bên ngoài như "PAM ,LDAP... "
+                - Cấu hình :
+                   external_auth:
+                     pam:
+                       user1:
+                          - 'web*':
+                             - test.*
+                             - network.*
+                       user2:
+                           - .*
+              -> user1 được phép thực thi các chức năng trong mô-đun thử nghiệm và mạng trên các tay sai phù hợp với mục tiêu web * .
+              -> user2 được phép thực thi tất cả các chức năng     
+            *Bất hệ thống xác thực bên ngoài :
+                 SALT -A PAM WEB\* TEST.PING 
+               ->  -a pam : kích hoạt xác thực bên ngoài PAM 
+               -> để hạn chế  Salt Server hỏi xác thực thêm tùy chọn -T sẽ lưu vào bộ nhớ cache các chi tiết xác thực trong 12h 
+                 salt -T -a pam web\* test.ping 
+            ##Hệ thống ngang hàng 
+             -Cho phép các minion thực thi các trình chạy từ chủ bằng cấu hình peer_run 
+             - Cấu hình :
+                 peer :
+                   .*
+                    - .*
+              -> giao tiếp tất cả các tay sai nhưng nó chỉ được khuyến nghị cho những môi trường an toàn 
+               -Để gán các minion cho các ID cụ thể:
+                  peer -
+                    .*domain.com:
+                        - test.*
+               -Cho phép các tay sai thực thi người chạy từ tệp chính bằng cách sử dụng tùy chọn peer_run trên tệp chính
+                    
+              peer_run:
+                 .*:
+                   - .*
+              -Để gán tay sai cho một ID cụ thể, cấu hình cần được xác định như dưới đây:
+                  peer_run:
+                   .*domain.com:
+                      - test.*
+             -Các lệnh để thực thi : 
+                  salt-call publish.publish \* test.ping -> sử dụng các tay sai lệnh salt-call
+                  salt-call publish.runner manage.up     -> thực thi runner 
               
               
               
